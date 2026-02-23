@@ -16,6 +16,7 @@ async function bootstrap() {
         : app.get(DevLogger);
 
   app.useLogger(logger);
+  app.setGlobalPrefix('api/afisha');
 
   await app.listen(3000);
 }
