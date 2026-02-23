@@ -1,6 +1,6 @@
 services:
   frontend-builder:
-    image: ghcr.io/your-org/your-app-frontend:latest
+    image: ghcr.io/sysol8/film-react-nest-frontend:latest
     build:
       context: ./frontend
       dockerfile: Dockerfile
@@ -11,7 +11,7 @@ services:
     restart: "no"
 
   backend:
-    image: ghcr.io/your-org/your-app-backend:latest
+    image: ghcr.io/sysol8/film-react-nest-backend:latest
     build:
       context: ./backend
       dockerfile: Dockerfile
@@ -30,7 +30,7 @@ services:
       - "3000"
 
   nginx:
-    image: ghcr.io/your-org/your-app-nginx:latest
+    image: ghcr.io/sysol8/film-react-nest-nginx:latest
     build:
       context: ./nginx
       dockerfile: Dockerfile
