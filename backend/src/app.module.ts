@@ -6,6 +6,7 @@ import * as path from 'node:path';
 import { configProvider } from './app.config.provider';
 import { FilmsModule } from './films/films.module';
 import { OrderModule } from './order/order.module';
+import { LoggerModule } from './common/logger/logger.module';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { OrderModule } from './order/order.module';
     }),
     FilmsModule,
     OrderModule,
+    LoggerModule,
   ],
   controllers: [],
   providers: [configProvider],
