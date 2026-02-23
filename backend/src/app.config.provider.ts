@@ -1,11 +1,13 @@
-import { ConfigModule } from '@nestjs/config';
-
 export const configProvider = {
-  imports: [ConfigModule.forRoot()],
   provide: 'CONFIG',
-  useValue: <AppConfig>{
-    //TODO прочесть переменнные среды
-  },
+  useFactory: (): AppConfig => ({
+    database: {
+      driver: process.env.DATABASE_DRIVER ?? 'postgres',
+      url: process.env.DATABASE_URL ?? '127.0.0.1',
+      username: process.env.DATABASE_USERNAME ?? 'postgres',
+      password: process.env.DATABASE_PASSWORD ?? 'postgres',
+    },
+  }),
 };
 
 export interface AppConfig {
@@ -15,4 +17,6 @@ export interface AppConfig {
 export interface AppConfigDatabase {
   driver: string;
   url: string;
+  username: string;
+  password: string;
 }

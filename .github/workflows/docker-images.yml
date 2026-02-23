@@ -47,7 +47,7 @@ jobs:
           images: ${{ env.REGISTRY }}/${{ steps.vars.outputs.owner_lc }}/${{ steps.vars.outputs.repo_lc }}-frontend
           tags: |
             type=sha
-            type=raw,value=latest,enable={{is_default_branch}}
+            type=raw,value=latest,enable=${{ github.ref_name == 'main' || github.event_name == 'workflow_dispatch' }}
             type=ref,event=tag
 
       - name: Build and push frontend image
@@ -68,7 +68,7 @@ jobs:
           images: ${{ env.REGISTRY }}/${{ steps.vars.outputs.owner_lc }}/${{ steps.vars.outputs.repo_lc }}-backend
           tags: |
             type=sha
-            type=raw,value=latest,enable={{is_default_branch}}
+            type=raw,value=latest,enable=${{ github.ref_name == 'main' || github.event_name == 'workflow_dispatch' }}
             type=ref,event=tag
 
       - name: Build and push backend image
@@ -89,7 +89,7 @@ jobs:
           images: ${{ env.REGISTRY }}/${{ steps.vars.outputs.owner_lc }}/${{ steps.vars.outputs.repo_lc }}-nginx
           tags: |
             type=sha
-            type=raw,value=latest,enable={{is_default_branch}}
+            type=raw,value=latest,enable=${{ github.ref_name == 'main' || github.event_name == 'workflow_dispatch' }}
             type=ref,event=tag
 
       - name: Build and push nginx image
