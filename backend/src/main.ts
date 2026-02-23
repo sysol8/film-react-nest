@@ -5,10 +5,7 @@ import { JsonLogger } from './common/logger/json.logger';
 import { TskvLogger } from './common/logger/tskv.logger';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule, {
-    logger: false,
-    bufferLogs: true,
-  });
+  const app = await NestFactory.create(AppModule);
 
   const loggerMode = process.env.LOGGER_MODE;
   const logger =
