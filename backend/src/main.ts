@@ -3,6 +3,7 @@ import { AppModule } from './app.module';
 import { DevLogger } from './common/logger/dev.logger';
 import { JsonLogger } from './common/logger/json.logger';
 import { TskvLogger } from './common/logger/tskv.logger';
+import { RequestMethod } from '@nestjs/common';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -16,7 +17,9 @@ async function bootstrap() {
         : app.get(DevLogger);
 
   app.useLogger(logger);
-  app.setGlobalPrefix('api/afisha');
+  app.setGlobalPrefix('api/afisha', {
+    exclude: [{ path: 'content/(.*)', method: RequestMethod.ALL }],
+  });
 
   await app.listen(3000);
 }
